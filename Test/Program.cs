@@ -1,3 +1,6 @@
+using Application.Services;
+using Domain.Interface;
+using Infrastructure.Persistence;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,7 +10,9 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<DataObj>();
+builder.Services.AddScoped<IQuoteService, QuoteService>();
+builder.Services.AddScoped<QuoteService>();
+builder.Services.AddSingleton<DataPersistence>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
