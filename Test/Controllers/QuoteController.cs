@@ -33,7 +33,19 @@ namespace Test.Controllers
 			return _quoteService.GetQuoteByName(name);
 		}
 
+		[HttpPost]
+		public IActionResult SaveQuote([FromBody] Quote quote)
+		{
+			var res = _quoteService.SaveQuote(quote);
+			return StatusCode(StatusCodes.Status201Created, new {mensaje = "Add Successful"});
+		}
 
+		[HttpPut]
+		public IActionResult UpdateQuote([FromBody] Quote quote)
+		{
+			var res = _quoteService.UpdateQuote(quote);
+			return StatusCode(StatusCodes.Status201Created, new { message = "Update Succesful" });
+		}
 
 	}
 }

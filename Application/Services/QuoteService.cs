@@ -43,5 +43,27 @@ namespace Application.Services
 		{
 			return _data.Quotes;
 		}
+
+		public int SaveQuote(Quote quote)
+		{
+			var lastId = _data.Quotes.LastOrDefault();
+			if (lastId != null)
+			{
+				quote.Id = lastId.Id + 1;
+			}
+			_data.Quotes.Add(quote);
+			return 1;
+		}
+
+		public int UpdateQuote(Quote quote)
+		{
+			var quoteRes = _data.Quotes.FirstOrDefault(q => q.Id == quote.Id);
+			if (quoteRes != null) 
+			{
+				quoteRes.Text = quote.Text;
+				quoteRes.Author = quote.Author;
+			}
+			return 1;
+		}
 	}
 }

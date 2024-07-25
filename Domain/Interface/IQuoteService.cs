@@ -6,5 +6,7 @@ namespace Domain.Interface
 		IEnumerable<Quote> GetQuoteList();
 		IEnumerable <Quote> GetQuoteById(int quoteId);
 		IEnumerable <Quote> GetQuoteByName(string quoteName);
+		int SaveQuote(Quote quote);
+		int UpdateQuote(Quote quote);
 	}
 }
